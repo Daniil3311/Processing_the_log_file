@@ -10,7 +10,7 @@ class LogAnalyzer:
         self.report_handlers = {
             'average': self.generate_average_report,
         }
-
+        
     def parse_args(self):
         parser = argparse.ArgumentParser(description='Process log files and generate reports.')
         parser.add_argument('--file', nargs='+', required=True, help='Path to log file(s)')
@@ -18,7 +18,6 @@ class LogAnalyzer:
                             help='Type of report to generate')
         parser.add_argument('--date', help='Filter logs by date (format: YYYY-MM-DD)')
         return parser.parse_args()
-
 
     def load_logs(self, file_paths, filter_date=None):
         logs = []
@@ -36,7 +35,6 @@ class LogAnalyzer:
                         continue
         return logs
 
-
     def generate_average_report(self, logs):
         pass
         endpoint_stats = defaultdict(lambda: {'count': 0, 'total_time': 0})
@@ -53,7 +51,6 @@ class LogAnalyzer:
             report_data.append([endpoint, stats['count'], f"{avg_time:.2f} ms"])
 
         return sorted(report_data, key=lambda x: x[1], reverse=True)
-
 
     def generate_report(self, report_type, logs):
         handler = self.report_handlers.get(report_type)
