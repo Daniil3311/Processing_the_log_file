@@ -58,7 +58,6 @@ class LogAnalyzer:
             raise ValueError(f"Unknown report type: {report_type}")
         return handler(logs)
 
-
     def run(self):
         args = self.parse_args()
         logs = self.load_logs(args.file, args.date)
